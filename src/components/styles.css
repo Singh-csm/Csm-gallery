@@ -1,0 +1,108 @@
+/* styles.css */
+/* Displaying images in a grid layout */
+.gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); /* Responsive grid layout */
+      gap: 30px;
+      padding: 20px;
+      transition: all 0.3s ease-in-out; /* Transition for grid layout changes */
+     
+    }
+/* For individual gallery images */
+    .gallery-image {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      
+      transition: all 0.3s ease-in-out; /* Transition for image size and border changes */
+      grid-column: span 1; /* Each image occupies one column */
+      grid-row: span 1; /* Each image occupies one row */
+    }
+
+    .gallery-image img {
+      width: 99%;
+      
+      object-fit: cover;
+      transition: all 0.6s ease-in-out; /* Transition for image size changes */
+      border: lightslategrey 1px solid;
+      border-radius: 8px;
+    }
+
+    .gallery-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0); /* Transparent overlay */
+      z-index: 1;
+      transition: all 0.4s ease-in-out; /* Slower transition */
+    }
+    
+    .gallery-image:hover::before {
+      background-color: rgba(0, 0, 0, 0.5); /* Dark overlay color with 50% opacity */
+      border-radius: 8px;
+    }
+    /* Checkbox input inside the gallery image */
+    .gallery-image input[type="checkbox"] {
+      position: absolute;
+      top: 10px; 
+      left: 10px; 
+      z-index: 2; /* Checkbox above the image */
+    }
+
+
+    .delete-button{
+      color: white;
+      background-color: rgb(148, 0, 0);
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+    }
+    .delete-button:hover{
+      color: rgb(255, 255, 255);
+      background-color: rgb(78, 86, 35);
+     
+    
+    
+      cursor: pointer;
+    }
+
+    
+.gallery-image.selected {
+      border: 4px solid rgb(6, 193, 62);
+      border-radius: 9px;
+    }
+    .gallery-image.featured {
+     
+      transform: scale(1); /* Larger scale for the featured image */
+      transition: all 0.3s ease-in-out; 
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* First image at the top left corner */
+.gallery-image:first-child {
+      grid-column: span 2; /* First image spans two columns */
+      grid-row: span 2; /* First image spans two rows */
+    }
+
+
+
+
+    /*  Responsiveness for various screen sizes using Media query  */
+@media screen and (max-width: 768px) {
+      .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Column width for smaller screens */
+        gap: 15px;
+        padding: 10px;
+      }
+    
+      .gallery-image:first-child {
+        grid-column: span 1; /* First image for smaller screens */
+        grid-row: span 1;
+      }
+    }
